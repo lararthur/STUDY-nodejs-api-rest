@@ -1,7 +1,16 @@
 const customExpress = require('./config/customExpress');
+const conexao = require('./infraestrutura/conexao');
 
-const app = customExpress();
+// aqui, conectamos com o bd indicado no arquivo de conexão em infraestrutura
+// e só iremos rodar o servidor de fato após a conexão estar funcionando
+conexao.connect((erro) => {
+    if(erro) {
+        console.log(erro);
+    } else {
+        console.log('conectado com o bd');
 
-app.listen(3000, () => {
-    console.log('servidor rodando e girando na porta 3000');
+        const app = customExpress();
+
+        app.listen(3000, () => console.log('servidor rodando e girando na porta 3000'));
+    }
 });
