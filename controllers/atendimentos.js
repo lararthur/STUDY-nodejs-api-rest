@@ -1,9 +1,12 @@
+const Atendimento = require('../models/atendimentos');
+
 module.exports = app => {
     app.get('/atendimentos', (req, res) => res.send('Você está na rota de antedimentos e está realizando um GET'));
 
     app.post('/atendimentos', (req, res) => {
-        console.log('---réqui bári', req.body);
+        const atendimento = req.body;
+        Atendimento.adiciona(atendimento);
 
-        res.send('Este carro está sendo roubado, e é monitorado pela car system');
+        res.send('Post atendido');
     });
 }
