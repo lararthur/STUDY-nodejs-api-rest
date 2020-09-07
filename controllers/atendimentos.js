@@ -19,4 +19,13 @@ module.exports = app => {
 
         Atendimento.adiciona(atendimento, res);
     });
+
+    // aterar dados do atendimento
+    // utiliza-se o verbo PATCH para alterar os dados.
+    app.patch('/atendimentos/:id', (req, res) => {
+        const id = parseInt(req.params.id);
+        const valores = req.body;
+
+        Atendimento.altera(id, valores, res);
+    });
 }
